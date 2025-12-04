@@ -14,6 +14,7 @@ param(
         1) Single user
         2) Multiple users (comma-separated)
         3) CSV file
+        4) View current group members
     - Skips users who are already members (logs + writes to console)
     - Logs all activity to a timestamped log file in your Documents folder
     - Supports -WhatIf switch to simulate without doing any changes
@@ -312,9 +313,10 @@ try {
     Write-Host "  1) Single user"
     Write-Host "  2) Multiple users (comma-separated)"
     Write-Host "  3) CSV file"
+    Write-Host "  4) View current group members"
     Write-Host ""
 
-    $choice = Read-Host "Enter 1, 2, or 3"
+    $choice = Read-Host "Enter 1, 2, 3, 4, or 5"
     Write-Log "Menu choice: $choice" 'INFO'
 
     switch ($choice) {
@@ -359,6 +361,15 @@ try {
             }
         }
 
+        '4' {
+            # View current group members
+            Write-Host "Current group members:" -ForegroundColor Green
+            $groupInfo.MemberSet | ForEach-Object { Write-Host $_ }
+            Write-Host ""
+            Write-Host "Press Enter to return to the exit..." -ForegroundColor Cyan
+            Read-Host
+        }
+
         Default {
             Write-Log "Invalid choice [$choice]. Exiting." 'ERROR'
         }
@@ -374,6 +385,4 @@ finally {
     catch {
         Write-Log "Error during Disconnect-ExchangeOnline (ignored): $_" 'WARN'
     }
-
-    Write-Log "=== MESG-MAN Tool finished ===" 'INFO'
 }
