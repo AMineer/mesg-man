@@ -15,7 +15,6 @@ param(
         2) Multiple users (comma-separated)
         3) CSV file
         4) View current group members
-        5) Return to main menu
     - Skips users who are already members (logs + writes to console)
     - Logs all activity to a timestamped log file in your Documents folder
     - Supports -WhatIf switch to simulate without doing any changes
