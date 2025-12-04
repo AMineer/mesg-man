@@ -102,4 +102,3 @@ Feel free to submit issues or pull requests to improve the script or add new fea
 ## License
 
 This project is licensed under the MIT License.
-```
